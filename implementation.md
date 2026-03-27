@@ -67,6 +67,16 @@ qsar-scaffold-split/
 
 ---
 
+## Key Concepts
+- **ECFP4 fingerprints**: `AllChem.GetMorganFingerprintAsBitVect(mol, radius=2, nBits=2048)` encodes circular substructures as a 2048-bit feature vector for QSAR modeling
+- **Scaffold split**: Greedy assignment of Murcko scaffold groups to train/test sets ensures the test set contains only unseen scaffolds, mimicking prospective drug discovery
+- **Random split comparison**: `train_test_split(random_state=42)` allows scaffold overlap, inflating R-squared and underestimating generalization error
+- **RandomForest regressor**: `RandomForestRegressor(n_estimators=200, random_state=42)` with impurity-based feature importances for interpretability
+- **Evaluation metrics**: R-squared, MAE, and RMSE on held-out test set; negative R-squared indicates predictions worse than the mean (common with scaffold split on small datasets)
+- **Delta-R-squared**: `random_R2 - scaffold_R2` quantifies the performance gap between optimistic (random) and realistic (scaffold) evaluation protocols
+
+---
+
 ## 3. Input Format
 
 ### `data/compounds.csv`
